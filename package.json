@@ -1,0 +1,19 @@
+{
+  "name": "stackdriver-custom",
+  "version": "0.0.1",
+  "author": "Segment.io <friends@segment.io>",
+  "url": "https://github.com/segmentio/stackdriver-custom",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/segmentio/stackdriver-custom.git"
+  },
+  "scripts": {
+    "test": "node test"
+  },
+  "dependencies": {
+    "underscore": "*",
+    "events": "*",
+    "request": "*"
+  },
+  "license": "MIT"
+}
