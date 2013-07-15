@@ -48,6 +48,7 @@ Client.prototype.init = function (options) {
   this.apiKey     = options.apiKey;
   this.customerId = options.customerId;
   this.host       = options.host || 'https://custom-gateway.stackdriver.com/v1/custom';
+  this.debug      = options.debug || false;
   this.instance   = options.instance;
 
   this.initialized = true;
@@ -64,6 +65,17 @@ Client.prototype._checkInitialized = function () {
   if (!this.initialized)
     throw new Error('stackdriver-custom client is not initialized. Please call ' +
                     'client.init(options).');
+};
+
+/**
+ * Log to console if debug is enabled
+ * @private
+ * 
+ * @param  {mixed} message whatever you want to log to console
+ */
+Client.prototype._debug = function(message) {
+  if (this.debug)
+    console.log(message)
 };
 
 
@@ -125,7 +137,7 @@ Client.prototype.sendMetric = function (name, value, collectedAt) {
   };
 
   // POST the message
-  console.log(request);
+  this._debug(request);
   requests.post(request, function (err, response, body) {
     if (err)
       throw new Error(err);
