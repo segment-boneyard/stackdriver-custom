@@ -48,6 +48,7 @@ Client.prototype.init = function (options) {
   this.apiKey     = options.apiKey;
   this.customerId = options.customerId;
   this.host       = options.host || 'https://custom-gateway.stackdriver.com/v1/custom';
+  this.instance   = options.instance;
 
   this.initialized = true;
 
@@ -106,6 +107,10 @@ Client.prototype.sendMetric = function (name, value, collectedAt) {
         collected_at : timestamp
     } 
   };
+
+  // Add instance if provided
+  if (this.instance)
+    message.data.instance = this.instance;
 
   // Create the headers
   var headers = {
