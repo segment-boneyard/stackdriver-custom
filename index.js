@@ -13,6 +13,8 @@ var _           = require('underscore'),
  *   @param  {String} customerId  - Stackdriver Customer Id
  *   @option {String} host        - Stackdriver API base hostname, which defaults to
  *                                  https://custom-gateway.stackdriver.com/v1/custom
+ *   @param  {String} instance    - Instance ID to pass along to Stackdriver
+ *   @param  {boolean} debug      - debug mode to log additional information
  */
 var Client = module.exports = function (options) {
 
