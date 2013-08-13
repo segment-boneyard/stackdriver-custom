@@ -1,6 +1,6 @@
 {
   "name": "stackdriver-custom",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A simple node client for submitting metrics to Stackdriver.",
   "author": "Segment.io <friends@segment.io>",
   "url": "https://github.com/segmentio/stackdriver-custom",
@@ -12,9 +12,9 @@
     "test": "node test"
   },
   "dependencies": {
-    "underscore": "*",
+    "underscore": "~1.5.1",
     "events": "*",
-    "request": "*"
+    "request": "~2.26.0"
   },
   "license": "MIT"
 }
