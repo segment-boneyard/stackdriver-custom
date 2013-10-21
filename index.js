@@ -1,5 +1,5 @@
-var _           = require('underscore'),
-    requests    = require('request');
+var _       = require('underscore'),
+    request = require('request');
 
 
 /**
@@ -79,7 +79,7 @@ Client.prototype.sendMetrics = function (metrics, callback) {
   });
 
   // http://feedback.stackdriver.com/knowledgebase/articles/181488-sending-custom-metrics-to-the-stackdriver-system
-  var request = {
+  var requestBody = {
     url: this.options.host,
     json: {
       timestamp     : Math.round(Date.now() / 1000),
@@ -91,5 +91,5 @@ Client.prototype.sendMetrics = function (metrics, callback) {
     }
   };
 
-  return requests.post(request, callback);
+  return request.post(requestBody, callback);
 };

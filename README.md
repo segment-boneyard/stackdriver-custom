@@ -5,6 +5,20 @@ A simple node client for submitting metrics to Stackdriver.
 
 http://feedback.stackdriver.com/knowledgebase/articles/181488-sending-custom-metrics-to-the-stackdriver-system
 
+## Usage
+
+```javascript
+var Stackdriver = require('stackdriver-custom');
+var stackdriver = new Stackdriver({
+    apiKey     : 'asdfasdf',
+    customerId : 0
+});
+
+stackdriver.sendMetric('Metric Name', 174, function (err, response) {
+    // I'm a callback, if you need me <3
+});
+```
+
 ## License
 
 ```
