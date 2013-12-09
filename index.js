@@ -54,8 +54,12 @@ Client.prototype.sendMetric = function (name, value, collected_at, callback) {
     throw new Error('[stackdriver-custom]#sendMetric: "value" must be number');
   }
 
-  if (timestamp && !_.isDate(collected_at)) {
+  if (collected_at && !_.isDate(collected_at)) {
     throw new Error('[stackdriver-custom]#sendMetric: "collected_at" must be a date');
+  }
+
+  if (!collected_at) {
+    collected_at = new Date();
   }
 
   var metric = { name: name, value: value, collected_at: collected_at };
