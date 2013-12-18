@@ -8,13 +8,14 @@ A simple node client for submitting [custom metrics to Stackdriver](http://feedb
 ## Usage
 
 ```javascript
-var Stackdriver = require('stackdriver-custom');
-var stackdriver = new Stackdriver({
-    apiKey     : 'asdfasdf',
-    customerId : 0
-});
+var conf = {
+  apiKey: 'asdfasdf',
+  customerId: 0
+}
 
-stackdriver.sendMetric('Metric Name', 174, function (err, response) {
+var stackdriver = require('stackdriver-custom')(conf);
+
+stackdriver.send('Metric Name', 174, function (err, response) {
     // I'm a callback, if you need me <3
 });
 ```
