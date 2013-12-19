@@ -1,6 +1,6 @@
 {
   "name": "stackdriver-custom",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple node client for submitting metrics to Stackdriver.",
   "author": "Segment.io <friends@segment.io>",
   "url": "https://github.com/segmentio/stackdriver-custom",
