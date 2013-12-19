@@ -96,4 +96,6 @@ Client.prototype.send = function (name, value, timestamp, callback) {
       if (!valid) err = new Error(body.text);
       callback && callback(err, body);
     });
+
+  return this;
 };
