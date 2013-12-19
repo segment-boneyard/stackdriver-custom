@@ -4,21 +4,28 @@ stackdriver-custom
 A simple node client for submitting [custom metrics to Stackdriver](http://feedback.stackdriver.com/knowledgebase/articles/181488-sending-custom-metrics-to-the-stackdriver-system).
 
 
-
 ## Usage
 
 ```javascript
-var conf = {
-  apiKey: 'asdfasdf',
-  customerId: 0
-}
-
-var stackdriver = require('stackdriver-custom')(conf);
+var apiKey = 'afsdf';
+var instance = 'i-dad340ec';
+var stackdriver = require('stackdriver-custom')(apiKey, instance);
 
 stackdriver.send('Metric Name', 174, function (err, response) {
     // I'm a callback, if you need me <3
 });
 ```
+
+## API
+
+### new Stackdriver(apiKey, [instance])
+
+  Creates a new stackdriver instance with the desired `apiKey` and optionally the instance id.
+
+### .send(name, value, [timestamp], [callback])
+
+  Sends a new custom datapoint for the `name` and `value`.
+
 
 ## License
 
