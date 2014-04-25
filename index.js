@@ -10,7 +10,6 @@ var unixTime = require('unix-time');
 
 module.exports = Client;
 
-
 /**
  * Stackdriver node client driver
  * http://feedback.stackdriver.com/knowledgebase/articles/181488-sending-custom-metrics-to-the-stackdriver-system
@@ -23,7 +22,7 @@ module.exports = Client;
  *   @param  {String} instance    - Instance ID to pass along to Stackdriver
  */
 
-function Client (apiKey, instance) {
+function Client(apiKey, instance){
   if (!(this instanceof Client)) return new Client(apiKey, instance);
   if (!is.string(apiKey) || is.empty(apiKey)) {
     throw new Error('apiKey must be a non-empty string');
@@ -32,7 +31,6 @@ function Client (apiKey, instance) {
   this.apiKey = apiKey;
   this.instance = instance;
 }
-
 
 /**
  * Identifying a user ties all of their actions to an ID, and associates
@@ -45,9 +43,9 @@ function Client (apiKey, instance) {
  *
  */
 
-Client.prototype.send = function (name, value, timestamp, callback) {
+Client.prototype.send = function(name, value, timestamp, fn){
   if (typeof timestamp === 'function') {
-    callback = timestamp;
+    fn = timestamp;
     timestamp = undefined;
   }
 
@@ -70,15 +68,16 @@ Client.prototype.send = function (name, value, timestamp, callback) {
   };
 
   debug('sending metric: %j', metric);
+  fn = fn || function(){};
   // http://feedback.stackdriver.com/knowledgebase/articles/181488-sending-custom-metrics-to-the-stackdriver-system
   request
     .post('https://custom-gateway.stackdriver.com/v1/custom')
     .send(body)
     .set('x-stackdriver-apikey', this.apiKey)
-    .end(function (err, body) {
-      var valid = body.status === 200 || body.status === 201;
-      if (!valid) err = new Error(body.text);
-      callback && callback(err, body);
+    .end(function (err, res) {
+      if (err) return fn(err);
+      if (!res.ok) err = new Error(res.text);
+      fn(err, res);
     });
 
   return this;
